@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './logo.svg'
+import './App.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { getCourses } from './store/courses/courses-actions'
 
 function App() {
+  const { courses, error, loading } = useSelector((state) => state.courses)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getCourses())
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>{JSON.stringify(courses)}</h1>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
